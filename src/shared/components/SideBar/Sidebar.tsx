@@ -1,9 +1,8 @@
-import { Divider, Drawer, Icon, List, ListItemButton, ListItemIcon, ListItemText, useTheme } from "@mui/material"
+import { Divider, Drawer, Icon, List, ListItemButton, ListItemIcon, ListItemText, useMediaQuery, useTheme } from "@mui/material"
 import { Box } from "@mui/system"
 import iconeproframe from '../../../assets/iconeproframe.png'
 import HomeIcon from '../../../assets/SidebarIcons/HomeIcon.svg'
-
-
+import { useDrawerContext } from "../../contexts";
 
 interface ISideBarProps {
     children: React.ReactNode;
@@ -11,10 +10,16 @@ interface ISideBarProps {
 
 export const SideBar: React.FC<ISideBarProps> = ({children}) => {
     const theme = useTheme()
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+    const { isDrawerOpen, toggleDrawerOpen } = useDrawerContext()
 
     return(
         <>
-        <Drawer variant="permanent">
+        <Drawer 
+        open={isDrawerOpen}
+        variant={smDown ? 'temporary' : 'permanent'}
+        onClose={toggleDrawerOpen}
+        >
             <Box 
             width={theme.spacing(28)}
             height="100%"
@@ -40,8 +45,7 @@ export const SideBar: React.FC<ISideBarProps> = ({children}) => {
                         <ListItemIcon>
                             <img src={HomeIcon}/>
                         </ListItemIcon>
-                        <ListItemText 
-                        sx={{fontFamily: 'serif', fontWeight: 'bold', fontSize: '2rem', color: '#000'}}                 
+                        <ListItemText                 
                         primary="Página Inicial" />
                     </ListItemButton>
                 </List>
@@ -52,7 +56,7 @@ export const SideBar: React.FC<ISideBarProps> = ({children}) => {
 
         <Box
             height='100vh'
-            marginLeft={theme.spacing(28)}
+            marginLeft={smDown ? 0 : theme.spacing(28)}
         >        
         {children}
         </Box>

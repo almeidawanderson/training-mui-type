@@ -3,11 +3,13 @@ import { AppRoutes } from "./routes";
 import { AppThemeProvider } from "./shared/contexts/ThemeProvider";
 import { Drawer } from "@mui/material";
 import { SideBar } from "./shared/components";
+import { DrawerProvider } from "./shared/contexts";
 
 export const App = () => {
   return (
    
     <AppThemeProvider>
+      <DrawerProvider>
       <BrowserRouter>  
 
        <SideBar>
@@ -15,6 +17,7 @@ export const App = () => {
         </SideBar>  
 
       </BrowserRouter>
+      </DrawerProvider>
     </AppThemeProvider>    
   );
 }
