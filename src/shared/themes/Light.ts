@@ -20,4 +20,5 @@ export const LightTheme = createTheme({
             default: '#f7f6f3', // fundo
         },
     }
+    
 })

@@ -1,17 +1,21 @@
 import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./routes";
-import { DarkTheme, LightTheme } from "./shared/themes";
 import { AppThemeProvider } from "./shared/contexts/ThemeProvider";
+import { Drawer } from "@mui/material";
+import { SideBar } from "./shared/components";
 
 export const App = () => {
   return (
    
     <AppThemeProvider>
-      <BrowserRouter>
-        <AppRoutes />
+      <BrowserRouter>  
+
+       <SideBar>
+          <AppRoutes />
+        </SideBar>  
+
       </BrowserRouter>
-    </AppThemeProvider>
-    
+    </AppThemeProvider>    
   );
 }
 
